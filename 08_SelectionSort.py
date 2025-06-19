@@ -7,3 +7,16 @@ for i in range(lnth):
             nums[min],nums[j] = nums[j],nums[min]
 
 print(nums)
+
+
+
+
+#🧠 Time Complexity:
+# Best case: O(n²)
+
+# Average case: O(n²)
+
+# Worst case: O(n²)
+
+# Space complexity: O(1) (in-place)
+
