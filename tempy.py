@@ -1,14 +1,14 @@
-arr = [1,3,13,2,25,23,2,4,2]
+arr = [1,3,13,2,25,23,2,4,2,99]
 
-n = len(arr)
+def largest(arr):
+    largest = arr[0]
+    second_largest = arr[0]
+    for i in range(len(arr)):
+        if largest < arr[i]:
+            largest = arr[i]
+    for i in range(len(arr)):
+        if arr[i] != largest and arr[i] > second_largest:
+            second_largest = arr[i]
+    return largest , second_largest
 
-for i in range(n):
-    key = arr[i]
-    j = i-1
-    while j >= 0 and arr[j] > key:
-        arr[j+1] = arr[j]
-        j -= 1
-
-    arr[j+1] = key
-
-print(arr)
+print(largest(arr))
