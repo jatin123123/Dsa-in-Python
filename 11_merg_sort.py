@@ -1,39 +1,36 @@
 def merge_sort(arr):
-    if len(arr) > 1:
-        mid = len(arr) // 2  # Finding the middle
-        left_half = arr[:mid]
-        right_half = arr[mid:]
+    # Base case: if array has 0 or 1 element, it's already sorted
+    if len(arr) <= 1:
+        return arr
 
-        merge_sort(left_half)  # Recursively sort left half
-        merge_sort(right_half)  # Recursively sort right half
+    # Split array into two halves
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
 
-        # Merging the sorted halves
-        i = j = k = 0
+    # Merge the sorted halves
+    return merge(left, right)
 
-        # Copy data to temp arrays left_half[] and right_half[]
-        while i < len(left_half) and j < len(right_half):
-            if left_half[i] < right_half[j]:
-                arr[k] = left_half[i]
-                i += 1
-            else:
-                arr[k] = right_half[j]
-                j += 1
-            k += 1
+def merge(left, right):
+    result = []
+    i = j = 0
 
-        # Checking if any element was left
-        while i < len(left_half):
-            arr[k] = left_half[i]
+    # Compare elements from both halves and add the smaller one
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
             i += 1
-            k += 1
-
-        while j < len(right_half):
-            arr[k] = right_half[j]
+        else:
+            result.append(right[j])
             j += 1
-            k += 1
 
+    # Add remaining elements from both halves (if any)
+    result.extend(left[i:])
+    result.extend(right[j:])
 
-arr = [12,34,23,5,23,53,23,5,23,23]
+    return result
 
-merge_sort(arr)
-
-print(arr)
+# Example usage
+arr = [3,2,1,4]
+sorted_arr = merge_sort(arr)
+print(sorted_arr)
